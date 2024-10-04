@@ -1,0 +1,96 @@
+# Health Management Database Design
+
+## Entities and Relationships
+
+1. Patient
+   - Attributes: ID, Name, DateOfBirth, ContactInfo
+   - Relationships:
+     * Many-to-Many with Doctor
+     * One-to-Many with Treatment
+     * Many-to-Many with Medication (for current medications)
+
+2. Doctor
+   - Attributes: ID, Name, Specialization, ContactInfo
+   - Relationships:
+     * Many-to-Many with Patient
+     * One-to-Many with Treatment
+
+3. Treatment
+   - Attributes: ID, StartDate, EndDate, Status (Ongoing/Completed)
+   - Relationships:
+     * Many-to-One with Patient
+     * Many-to-One with Doctor
+     * One-to-Many with Visit
+     * Many-to-One with Disease
+
+4. Visit
+   - Attributes: ID, Date, Notes
+   - Relationships:
+     * Many-to-One with Treatment
+     * Many-to-Many with Medication (prescribed during this visit)
+
+5. Disease
+   - Attributes: ID, Name, Description
+   - Relationships:
+     * One-to-Many with Treatment
+     * Many-to-Many with Medication
+     * Many-to-Many with Surgery
+     * Many-to-Many with Vaccine
+
+6. Medication
+   - Attributes: ID, Name, Description
+   - Relationships:
+     * Many-to-Many with Disease
+     * Many-to-Many with Patient (for current medications)
+     * Many-to-Many with Visit (for prescriptions)
+
+7. Surgery
+   - Attributes: ID, Name, Description
+   - Relationships:
+     * Many-to-Many with Disease
+
+8. Vaccine
+   - Attributes: ID, Name, Description
+   - Relationships:
+     * Many-to-Many with Disease
+
+9. Allergy
+   - Attributes: ID, Name, Description
+   - Relationships:
+     * Many-to-Many with Patient
+
+## Key Considerations
+
+1. Patient Profile:
+   - Show all treatments (ongoing and completed)
+   - Display current medications
+
+2. Doctor Profile:
+   - List all treatments the doctor is handling
+   - Ability to view details of each treatment, including visits and summary
+
+3. Data Dating:
+   - Treatments have StartDate and EndDate
+   - Visits have Date
+
+4. Minimal Display:
+   - When pulling up data for Disease, Medication, Surgery, Vaccine, and Allergy, only show Name and Description
+
+5. Inter-entity Relationships:
+   - Disease is linked to related Medications, Surgeries, and Vaccines
+   - Medication is linked to associated Diseases
+
+## Additional Notes
+
+- The Patient-Medication many-to-many relationship represents current medications.
+- The Visit-Medication many-to-many relationship represents prescriptions given during a visit.
+- Treatment status (Ongoing/Completed) allows easy filtering of current and past treatments.
+- The Disease entity acts as a central point connecting Treatments, Medications, Surgeries, and Vaccines.
+
+This design allows for:
+- Viewing a patient's current and past treatments
+- Seeing a patient's current medications
+- Viewing all treatments a doctor is handling
+- Accessing detailed treatment information, including all visits
+- Relating diseases to medications, surgeries, and vaccines
+- Viewing medications associated with a disease and vice versa

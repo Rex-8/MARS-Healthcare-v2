@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile{% endblock title %}
+
+{% block content %}
+<h1>Patient Profile</h1>
+
+<style>
+    .profile-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    .profile-section {
+        margin-bottom: 30px;
+    }
+    .profile-section h2 {
+        color: #333;
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 10px;
+    }
+    .profile-info {
+        display: grid;
+        grid-template-columns: 150px 1fr;
+        gap: 10px;
+    }
+    .profile-info .label {
+        font-weight: bold;
+        color: #555;
+    }
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    li {
+        margin-bottom: 10px;
+    }
+    .visit-info {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 5px;
+    }
+    .visit-info .label {
+        font-weight: bold;
+        color: #555;
+    }
+</style>
+
+<div class="profile-container">
+    <div class="profile-section">
+        <h2>Personal Information</h2>
+        <div class="profile-info">
+            <span class="label">Name:</span>
+            <span>{{ patient.name }}</span>
+            <span class="label">Age:</span>
+            <span>{{ patient.age }}</span>
+            <span class="label">Gender:</span>
+            <span>{{ patient.gender }}</span>
+            <span class="label">Physical Description:</span>
+            <span>{{ patient.physical_description }}</span>
+            <span class="label">Mental Health Status:</span>
+            <span>{{ patient.mental_health_status }}</span>
+        </div>
+    </div>
+
+    <div class="profile-section">
+        <h2>Allergies</h2>
+        <ul>
+            {% for allergy in patient.allergies %}
+                <li>{{ allergy.description }}</li>
+            {% else %}
+                <li>No allergies recorded</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="profile-section">
+        <h2>Medications</h2>
+        <ul>
+            {% for medication in patient.medications %}
+                <li>{{ medication.name }}</li>
+            {% else %}
+                <li>No medications recorded</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="profile-section">
+        <h2>Vaccines</h2>
+        <ul>
+            {% for vaccine in patient.vaccines %}
+                <li>{{ vaccine.name }}</li>
+            {% else %}
+                <li>No vaccines recorded</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="profile-section">
+        <h2>Recent Visits</h2>
+        <ul>
+            {% for visit in patient.visits %}
+                <li>
+                    <div class="visit-info">
+                        <span class="label">Date:</span>
+                        <span>{{ visit.date }}</span>
+                        <span class="label">Reason:</span>
+                        <span>{{ visit.reason_for_visit }}</span>
+                        <span class="label">Doctor:</span>
+                        <span>{{ visit.doctor.name }}</span>
+                    </div>
+                </li>
+            {% else %}
+                <li>No recent visits recorded</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+
+{% endblock content %}

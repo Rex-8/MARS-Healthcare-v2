@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}MARS{% endblock title %}MARS</title>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="{{ url_for('index') }}">Home</a></li>
+      <li><a href="{{ url_for('profile') }}">Profile</a></li>
+      <li><a href="{{ url_for('treatments') }}">Treatments</a></li>
+    </ul>
+  </nav>
+
+  {% block content %}
+
+  {% endblock content %}
+
+<footer>
+    © 2024 MARS Healthcare Ecosystem. All rights reserved.
+</footer>
+
+</body>
+</html>

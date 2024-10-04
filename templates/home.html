@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+<div id="home-page-slide1">
+    <h2> Introducing MARS </h2>
+    <h3> Your personal health companion </h3>
+</div>
+
+<div id="home-page-slide2">
+    <h2>Let us help you find the best doctor </h2>
+    <h3>Describe your symptom</h3>
+    <input type="text" placeholder="I have a headache">
+    <h3>Feel free to add an image or video</h3>
+    <input type="file" accept="image/*,video/*">
+    <button type="submit">Submit</button>
+
+</div>
+
+<div id="home-page-slide3">
+    <h2>Our key features</h2>
+    {% for i in [['AI Powered Analysis','Get instant insights on your symptoms with our advanced AI technology.'],['Hospital Finder','Locate the best hospitals near you with our smart recommendation system.'],['Centralized Health Records','Access your complete medical history in one secure location.'],['Telemedicine','Connect with healthcare providers remotely for consultations and follow-ups.']] %}
+        <div>
+            <h3>{{i[0]}}</h3>
+            <p>{{i[1]}}</p>
+        </div>
+    {% endfor %}
+</div>
+
+<div id="home-page-slide4">
+    <h2>Testimonials</h2>
+    {% for i in [['John Doe','I was amazed at how quickly I received a diagnosis and treatment plan. MARS is a game-changer for me.'],['Albert Newton','I was amazed at how quickly I received a diagnosis and treatment plan. MARS is a game-changer for me.'],['Steve Smith','I was amazed at how quickly I received a diagnosis and treatment plan. MARS is a game-changer for me.']] %}
+        <div>
+            <h3>{{i[0]}}</h3>
+            <p>{{i[1]}}</p>
+        </div>
+    {% endfor %}
+</div>
+
+<div id="home-page-slide5">
+    <h2>Contact Us</h2>
+    <h3>Email</h3>
+    <p>info@mars.com</p>
+    <h3>Phone</h3>
+    <p>+1234567890</p>
+    <h3>Address</h3>
+    <p>1234 Main St, Bangalore, Karnataka, India</p>
+
+    <h3>Follow Us</h3>
+    <div>
+        <h6>Facebook</h6>
+        <h6>Instagram</h6>
+        <h6>Twitter</h6>    
+    </div>
+</div>
+
+{% endblock content %}

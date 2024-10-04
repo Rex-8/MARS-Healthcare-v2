@@ -1,0 +1,13 @@
+
+
+@app.route('/')
+def index():
+    return render_template('home.html')  # Ensure you have a home.html template
+
+@app.route('/profile')
+def profile():
+    # Example patient data for demonstration
+    patient = Patient.query.first()  # Fetch the first patient from the database
+    if patient:
+        return render_template('profile.html', patient=patient)
+    return "No patient data available."
